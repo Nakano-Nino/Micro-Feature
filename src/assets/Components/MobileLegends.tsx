@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import { useNavigate } from 'react-router-dom'
 import '../css/MobileLegend.css'
 import axios from 'axios'
 
@@ -16,6 +17,7 @@ interface hero {
 function MobileLegend() {
   const [heroList, setHeroList] = useState<hero[]>()
   const [text, setText] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadHeroData()
@@ -40,7 +42,9 @@ function MobileLegend() {
 
   return (
     <>
-        <h2 style={{margin:50}}>Daftar Hero Mobile Legend</h2>
+      <Button variant="primary" style={{margin:30}} onClick={() => {navigate("/")}}>Kembali</Button>
+      <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+      <h2 style={{marginTop:10, marginBottom:30}}>Daftar Hero Mobile Legend</h2>
         <div style={{marginTop:10}}>
         <InputGroup>
             <Form.Control
@@ -59,6 +63,7 @@ function MobileLegend() {
           </div>
         ))}
       </div>
+      </div> 
     </>
   )
 }
